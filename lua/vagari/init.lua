@@ -1,49 +1,45 @@
-local M = {}
+local vagari = {}
 
--- default config
-M.config = {
+vagari.config = {
+	terminal_colors = true,
 	ending_tildes = false,
-	term_colors = true,
-	style = {
+	attributes = {
 		undercurl = true,
 		underline = true,
+		underdouble = true,
+		underdotted = true,
+		underdashed = true,
+		strikethrough = true,
 		bold = true,
 		italic = true,
-		strikethrough = true,
 	},
 	overrides = {
 		palette = {},
-		group = {},
+		highlights = {},
 		semantic = {},
 	},
 }
 
-function M.setup(config)
-	M.config = vim.tbl_extend("force", M.config, config or {})
+function vagari.setup(config)
+	vagari.config = vim.tbl_extend("force", vagari.config, config or {})
 end
 
-M.load = function()
+vagari.load = function()
 	if vim.version().minor < 8 then
-		vim.notify_once("gruvbox.nvim: you must use neovim 0.8 or higher")
+		vim.notify_once("vagari.nvim: you must use neovim 0.8 or higher")
 		return
 	end
 
-	-- reset colors
-	if vim.g.colors_name then
-		vim.cmd("hi clear")
+	vim.cmd("hi clear")
+	if vim.fn.exists("syntax_on") then
+		vim.cmd("syntax reset")
 	end
 
-	vim.g.colors_name = "gruvbox"
 	vim.o.termguicolors = true
+	vim.g.colors_name = "vagari"
 
-	local groups = require("gruvbox.groups").setup()
-
-	-- add highlights
-	for group, settings in pairs(groups) do
-		vim.api.nvim_set_hl(0, group, settings)
-	end
+	require("vagari.highlights").setup()
+	require("vagari.terminal").setup()
 end
 
--- test -> :so $VIMRUNTIME/syntax/hitest.vim
-
-return M
+return vagari
