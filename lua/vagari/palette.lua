@@ -1,8 +1,4 @@
-local palette = {}
-
--- 🎨 colors
-palette.colors = {
-
+return {
 	bg = "#222536", -- CR: 1.00
 	fg = "#aeb9f8", -- CR: 8.00
 
@@ -130,11 +126,3 @@ palette.colors = {
 	olv_4 = "#6e7270", -- CR: 3.10
 	olv_5 = "#818382", -- CR: 3.97
 }
-
-local p = palette.colors
-
-palette.semantics = {
-	white = p.fg,
-}
-
-return palette

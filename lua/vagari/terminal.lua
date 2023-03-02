@@ -1,5 +1,4 @@
 local terminal = {}
-local c = vim.g.vagari_config
 local p = require("vagari.palette")
 
 -- terminal colors tradit
@@ -10,9 +9,6 @@ local p = require("vagari.palette")
 -- \-------------------------------------------------------------/
 
 function terminal.setup()
-	if not c.terminal_colors then
-		return
-	end
 	vim.g.terminal_color_0 = p.black
 	vim.g.terminal_color_1 = p.red
 	vim.g.terminal_color_2 = p.green
