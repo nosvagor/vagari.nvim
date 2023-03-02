@@ -33,7 +33,7 @@ function highlights.setup()
 	-- 	hl.plugins.navic["NavicIcons" .. kind] = { fg = color }
 	-- end
 
-	vim_highlights(hl.common)
+	vim_highlights(hl.editor)
 	-- vim_highlights(hl.syntax)
 	-- vim_highlights(hl.treesitter)
 
@@ -50,11 +50,11 @@ end
 
 -- 🗞️ common {{{
 hl.editor = {
-	Normal = {},
+	Normal = { fg = p.fg, bg = p.bg },
 	Terminal = {},
 	EndOfBuffer = {},
 	FoldColumn = {},
-	Folded = {},
+	Folded = { fg = p.drk_3, bg = p.drk_0 },
 	SignColumn = {},
 	ToolbarLine = {},
 	Cursor = {},
