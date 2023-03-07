@@ -4,7 +4,13 @@ local p = require("vagari.palette")
 local s = require("vagari.semantics")
 
 local highlights = {}
-local hl = {}
+local hl = {
+    editor = {},
+    syntax = {},
+    treesitter = {},
+    filetypes = {},
+    plugins = {},
+}
 
 local function vim_highlights(hl_groups)
 	for group_name, group_settings in pairs(hl_groups) do
