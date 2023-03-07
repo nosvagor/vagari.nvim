@@ -4,13 +4,7 @@ local p = require("vagari.palette")
 local s = require("vagari.semantics")
 
 local highlights = {}
-local hl = {
-	common = {},
-	syntax = {},
-	treesitter = {},
-	filetypes = {},
-	plugins = {},
-}
+local hl = {}
 
 local function vim_highlights(hl_groups)
 	for group_name, group_settings in pairs(hl_groups) do
@@ -34,7 +28,7 @@ function highlights.setup()
 	-- end
 
 	vim_highlights(hl.editor)
-	-- vim_highlights(hl.syntax)
+	vim_highlights(hl.syntax)
 	-- vim_highlights(hl.treesitter)
 
 	-- for _, group in pairs(hl.filetypes) do
@@ -48,7 +42,7 @@ end
 -- }}}
 -- ============================================================================
 
--- 🗞️ common {{{
+-- 🗞️ editor {{{
 hl.editor = {
 	Normal = { fg = p.fg, bg = p.bg },
 	Terminal = {},
@@ -119,39 +113,39 @@ hl.editor = {
 
 -- 🌐 syntax {{{
 hl.syntax = {
-	String = {},
-	Character = {},
-	Number = {},
-	Float = {},
-	Boolean = {},
-	Type = {},
-	Structure = {},
-	StorageClass = {},
-	Identifier = {},
-	Constant = {},
-	PreProc = {},
-	PreCondit = {},
-	Include = {},
-	Keyword = {},
-	Define = {},
-	Typedef = {},
-	Exception = {},
-	Conditional = {},
-	Repeat = {},
-	Statement = {},
-	Macro = {},
-	Error = {},
-	Label = {},
-	Special = {},
-	SpecialChar = {},
-	Function = {},
-	Operator = {},
-	Title = {},
-	Tag = {},
-	Delimiter = {},
-	Comment = {},
-	SpecialComment = {},
-	Todo = {},
+	Boolean = { s.syntax.Boolean },
+	Character = { s.syntax.Character },
+	Comment = { s.syntax.Comment },
+	Conditional = { s.syntax.Conditional },
+	Constant = { s.syntax.Constant },
+	Define = { s.syntax.Define },
+	Delimiter = { s.syntax.Delimiter },
+	Error = { s.syntax.Error },
+	Exception = { s.syntax.Exception },
+	Float = { s.syntax.Float },
+	Function = { s.syntax.Function },
+	Identifier = { s.syntax.Identifier },
+	Include = { s.syntax.Include },
+	Keyword = { s.syntax.Keyword },
+	Label = { s.syntax.Label },
+	Macro = { s.syntax.Macro },
+	Number = { s.syntax.Number },
+	Operator = { s.syntax.Operator },
+	PreCondit = { s.syntax.PreProc },
+	PreProc = { s.syntax.PreProc },
+	Repeat = { s.syntax.Repeat },
+	Special = { s.syntax.Special },
+	SpecialChar = { s.syntax.SpecialChar },
+	SpecialComment = { s.syntax.SpecialComment },
+	Statement = { s.syntax.Statement },
+	StorageClass = { s.syntax.StorageClass },
+	String = { s.syntax.String },
+	Structure = { s.syntax.Structure },
+	Tag = { s.syntax.Tag },
+	Title = { s.syntax.Title },
+	Todo = { s.syntax.Todo },
+	Type = { s.syntax.Type },
+	Typedef = { s.syntax.Typedef },
 }
 -- }}}
 
