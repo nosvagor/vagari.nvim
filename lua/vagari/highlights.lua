@@ -1,20 +1,20 @@
 -- ============================================================================
 -- 🧰 setup {{{
 local p = require("vagari.palette")
-local s = require("vagari.semantics")
+local l = require("vagari.links")
 
 local highlights = {}
 local hl = {
-    editor = {},
-    syntax = {},
-    treesitter = {},
-    filetypes = {},
-    plugins = {},
+	builtin = {},
+	treesitter = {},
+	filetypes = {},
+	plugins = {},
 }
 
 local function vim_highlights(hl_groups)
 	for group_name, group_settings in pairs(hl_groups) do
-		vim.api.nvim_command( string.format(
+		vim.api.nvim_command(
+			string.format(
 				"highlight %s guifg=%s guibg=%s guisp=%s gui=%s",
 				group_name,
 				group_settings.fg or "none",
@@ -33,9 +33,9 @@ function highlights.setup()
 	-- 	hl.plugins.navic["NavicIcons" .. kind] = { fg = color }
 	-- end
 
-	vim_highlights(hl.editor)
-	vim_highlights(hl.syntax)
-	-- vim_highlights(hl.treesitter)
+	vim_highlights(hl.builtin)
+	vim_highlights(l.syntax)
+	-- vimhighlights(hl.treesitter)
 
 	-- for _, group in pairs(hl.filetypes) do
 	-- 	vim_highlights(group)
@@ -48,110 +48,71 @@ end
 -- }}}
 -- ============================================================================
 
--- 🗞️ editor {{{
-hl.editor = {
+-- 🔋 builtin {{{
+hl.builtin = {
+	ColorColumn = { fg = p.drk_0},
+	Conceal = { fg = p.slt_1},
+	CurSearch = { fg = p.orn_4, bg = p.drk_0},
+	Cursor = { fg = p.bg, bg = p.brt_1},
+	lCursor = { fg = p.bg, bg = p.brt_1},
+	CursorIM = { fg = p.bg, bg = p.brt_1},
+	CursorColumn = { fg = p.drk_0},
+	CursorLine = { fg = p.drk_0},
+	Directory = { fg = p.sky_2},
+	DiffAdd = { fg = p.tyr_2},
+	DiffChange = { fg = p.asn_2},
+	DiffDelete = { fg = p.his_2},
+	DiffText = { fg = p.glu_2},
+	EndOfBuffer = { fg = p.bg},
+	TermCursor = { fg = p.bg, bg = p.brt_1 },
+	TermCursorNC = { fg = p.bg, bg = p.brt_1 },
+	ErrorMsg = { fg = p.rby_1},
+	WinSeparator = { fg = p.blu_3},
+	Folded = { fg = p.slt_3, bg = p.drk_0},
+	FoldColumn = { fg = p.slt_3,bg =  p.drk_0},
+	SignColumn = { fg = p.slt_3,bg =  p.drk_0},
+	IncSearch = { fg = p.orn_4, bg = p.slt_0},
+	Substitute = { fg = p.orn_4, bg = p.slt_0},
+	LineNr = { fg = p.asn_0 },
+	LineNrAbove = { fg = p.his_0 },
+	LineNrBelow = { fg = p.glu_0 },
+	CursorLineNr = { fg = p.asn_0 },
+	CursorLineSign = { fg = p.asn_0 },
+	CursorLineFold = { fg = p.asn_0 },
+	MatchParen = { fg = p.orn_4 },
+	ModeMsg = { fg = p.slt_5 },
+	MsgArea = { fg = p.slt_5 },
+	MsgSeparator = { fg = p.blu_2 },
+	MoreMsg = { fg = p.blu_3 },
+	NonText = { fg = p.drk_0 },
 	Normal = { fg = p.fg, bg = p.bg },
-	Terminal = {},
-	EndOfBuffer = {},
-	FoldColumn = {},
-	Folded = { fg = p.drk_3, bg = p.drk_0 },
-	SignColumn = {},
-	ToolbarLine = {},
-	Cursor = {},
-	vCursor = {},
-	iCursor = {},
-	lCursor = {},
-	CursorIM = {},
-	CursorColumn = {},
-	CursorLine = {},
-	ColorColumn = {},
-	CursorLineNr = {},
-	LineNr = {},
-	Conceal = {},
-	DiffAdd = {},
-	DiffChange = {},
-	DiffDelete = {},
-	DiffText = {},
-	DiffAdded = {},
-	DiffRemoved = {},
-	DiffFile = {},
-	DiffIndexLine = {},
-	Directory = {},
-	ErrorMsg = {},
-	WarningMsg = {},
-	MoreMsg = {},
-	IncSearch = {},
-	Search = {},
-	Substitute = {},
-	MatchParen = {},
-	NonText = {},
-	Whitespace = {},
-	SpecialKey = {},
-	Pmenu = {},
-	PmenuSbar = {},
-	PmenuSel = {},
-	WildMenu = {},
-	PmenuThumb = {},
-	Question = {},
-	SpellBad = {},
-	SpellCap = {},
-	SpellLocal = {},
-	SpellRare = {},
-	StatusLine = {},
-	StatusLineTerm = {},
-	StatusLineNC = {},
-	StatusLineTermNC = {},
-	TabLine = {},
-	TabLineFill = {},
-	TabLineSel = {},
-	VertSplit = {},
-	Visual = {},
-	VisualNOS = {},
-	QuickFixLine = {},
-	Debug = {},
-	debugPC = {},
-	debugBreakpoint = {},
-	ToolbarButton = {},
-	FloatBorder = {},
-	NormalFloat = {},
-}
--- }}}
-
--- 🌐 syntax {{{
-hl.syntax = {
-	Boolean = { s.syntax.Boolean },
-	Character = { s.syntax.Character },
-	Comment = { s.syntax.Comment },
-	Conditional = { s.syntax.Conditional },
-	Constant = { s.syntax.Constant },
-	Define = { s.syntax.Define },
-	Delimiter = { s.syntax.Delimiter },
-	Error = { s.syntax.Error },
-	Exception = { s.syntax.Exception },
-	Float = { s.syntax.Float },
-	Function = { s.syntax.Function },
-	Identifier = { s.syntax.Identifier },
-	Include = { s.syntax.Include },
-	Keyword = { s.syntax.Keyword },
-	Label = { s.syntax.Label },
-	Macro = { s.syntax.Macro },
-	Number = { s.syntax.Number },
-	Operator = { s.syntax.Operator },
-	PreCondit = { s.syntax.PreProc },
-	PreProc = { s.syntax.PreProc },
-	Repeat = { s.syntax.Repeat },
-	Special = { s.syntax.Special },
-	SpecialChar = { s.syntax.SpecialChar },
-	SpecialComment = { s.syntax.SpecialComment },
-	Statement = { s.syntax.Statement },
-	StorageClass = { s.syntax.StorageClass },
-	String = { s.syntax.String },
-	Structure = { s.syntax.Structure },
-	Tag = { s.syntax.Tag },
-	Title = { s.syntax.Title },
-	Todo = { s.syntax.Todo },
-	Type = { s.syntax.Type },
-	Typedef = { s.syntax.Typedef },
+	NormalFloat = { fg = p.brt_1 },
+	NormalNC = { fg = p.fg },
+	Pmenu = { fg = p.fg, bg = p.slt_0 },
+	PmenuSel = { fg = p.brt_2, p.bg },
+	PmenuSbar = { fg = p.slt_2 },
+	PmenuThumb = { fg = p.slt_5 },
+	Question = { fg = p.blu_4 },
+	QuickFixLine = { fg = p.brt_3 },
+	Search = { fg = p.orn_4 },
+	SpecialKey = { fg = p.olv_2 },
+	SpellBad = { fg = p.rby_1 },
+	SpellCap = { fg = p.sky_1 },
+	SpellLocal = { fg = p.cyn_1 },
+	SpellRare = { fg = p.pnk_1 },
+	StatusLine = { fg = p.drk_0 },
+	StatusLineNC = { fg = p.drk_0 },
+	TabLine = { fg = p.drk_0 },
+	TabLineFill = { fg = p.dark_1 },
+	TabLineSel = { fg = p.orn_4 },
+	Title = { fg = p.sky_4 },
+	Visual = { fg = p.slt_0 },
+	VisualNOS = { fg = p.plm_0 },
+	WarningMsg = { fg = p.sun_4 },
+	Whitespace = { fg = p.slt_2 },
+	WildMenu = { fg = p.blu_2 },
+	WinBar = { fg = p.drk_0 },
+	WinBarNC = { fg = p.drk_0 },
 }
 -- }}}
 
