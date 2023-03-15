@@ -9,22 +9,22 @@ local p = require("vagari.palette")
 -- \-------------------------------------------------------------/
 
 function terminal.setup()
-	vim.g.terminal_color_0 = p.black
-	vim.g.terminal_color_1 = p.red
-	vim.g.terminal_color_2 = p.green
-	vim.g.terminal_color_3 = p.yellow
-	vim.g.terminal_color_4 = p.blue
-	vim.g.terminal_color_5 = p.purple
-	vim.g.terminal_color_6 = p.cyan
-	vim.g.terminal_color_7 = p.white
-	vim.g.terminal_color_8 = p.grey
-	vim.g.terminal_color_9 = p.red
-	vim.g.terminal_color_10 = p.green
-	vim.g.terminal_color_11 = p.yellow
-	vim.g.terminal_color_12 = p.blue
-	vim.g.terminal_color_13 = p.purple
-	vim.g.terminal_color_14 = p.cyan
-	vim.g.terminal_color_15 = p.white
+	vim.g.terminal_color_0 = p.drk_0
+	vim.g.terminal_color_1 = p.rby_2
+	vim.g.terminal_color_2 = p.erm_2
+	vim.g.terminal_color_3 = p.sun_2
+	vim.g.terminal_color_4 = p.blu_2
+	vim.g.terminal_color_5 = p.prp_2
+	vim.g.terminal_color_6 = p.cyn_2
+	vim.g.terminal_color_7 = p.fg
+	vim.g.terminal_color_8 = p.slt_2
+	vim.g.terminal_color_9 = p.rby_4
+	vim.g.terminal_color_10 = p.erm_4
+	vim.g.terminal_color_11 = p.sun_4
+	vim.g.terminal_color_12 = p.blu_4
+	vim.g.terminal_color_13 = p.prp_4
+	vim.g.terminal_color_14 = p.cyn_4
+	vim.g.terminal_color_15 = p.brt_2
 end
 
 return terminal

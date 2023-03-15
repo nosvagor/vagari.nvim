@@ -2,7 +2,7 @@ local vagari = {}
 
 vagari.load = function()
 	if vim.version().minor < 8 then
-		vim.notify_once("vagari.nvim: you must use neovim 0.8 or higher")
+		vim.notify_once("vagari.nvim: neovim 0.8 or higher required")
 		return
 	end
 
@@ -19,3 +19,9 @@ vagari.load = function()
 end
 
 return vagari
+
+-- https://github.com/nvim-treesitter/nvim-treesitter/blob/master/CONTRIBUTING.md
+-- :so $VIMRUNTIME/syntax/hitest.vim
+-- :telescope highlights
+-- :h group-name
+-- :h highlight

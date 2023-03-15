@@ -1,17 +1,18 @@
 -- ============================================================================
 -- 🧰 setup {{{
-local p = require("vagari.palette")
-local l = require("vagari.links")
+local t = require("vagari.thalamus")
 
 local highlights = {}
+
 local hl = {
+	syntax = {},
 	builtin = {},
 	treesitter = {},
-	filetypes = {},
+	treesitter_queries = {},
 	plugins = {},
 }
 
-local function vim_highlights(hl_groups)
+local function nvim_highlight(hl_groups)
 	for group_name, group_settings in pairs(hl_groups) do
 		vim.api.nvim_command(
 			string.format(
@@ -27,390 +28,335 @@ local function vim_highlights(hl_groups)
 end
 
 function highlights.setup()
-	-- for kind, color in pairs(s.lsp) do
-	-- 	hl.plugins.cmp["CmpItemKind" .. kind] = { fg = color }
-	-- 	hl.plugins.outline["Aerial" .. kind .. "Icon"] = { fg = color }
-	-- 	hl.plugins.navic["NavicIcons" .. kind] = { fg = color }
-	-- end
 
-	vim_highlights(hl.builtin)
-	vim_highlights(l.syntax)
-	-- vimhighlights(hl.treesitter)
+    nvim_highlight(hl.builtin)
+    nvim_highlight(hl.syntax)
+    nvim_highlight(hl.treesitter)
+    nvim_highlight(hl.treesitter_queries)
 
-	-- for _, group in pairs(hl.filetypes) do
-	-- 	vim_highlights(group)
-	-- end
-	--
-	-- for _, group in pairs(hl.plugins) do
-	-- 	vim_highlights(group)
-	-- end
+    for _, group in pairs(hl.plugins) do
+        nvim_highlight(group)
+    end
 end
+
+-- Useful resources:
+-- https://github.com/nvim-treesitter/nvim-treesitter/blob/master/CONTRIBUTING.md
+-- :so $VIMRUNTIME/syntax/hitest.vim
+-- :telescope highlights
+-- :h highlight
+-- :h group-name
+
 -- }}}
 -- ============================================================================
 
--- 🔋 builtin {{{
+-- 🕹️ builtin {{{
 hl.builtin = {
-	ColorColumn = { fg = p.drk_0},
-	Conceal = { fg = p.slt_1},
-	CurSearch = { fg = p.orn_4, bg = p.drk_0},
-	Cursor = { fg = p.bg, bg = p.brt_1},
-	lCursor = { fg = p.bg, bg = p.brt_1},
-	CursorIM = { fg = p.bg, bg = p.brt_1},
-	CursorColumn = { fg = p.drk_0},
-	CursorLine = { fg = p.drk_0},
-	Directory = { fg = p.sky_2},
-	DiffAdd = { fg = p.tyr_2},
-	DiffChange = { fg = p.asn_2},
-	DiffDelete = { fg = p.his_2},
-	DiffText = { fg = p.glu_2},
-	EndOfBuffer = { fg = p.bg},
-	TermCursor = { fg = p.bg, bg = p.brt_1 },
-	TermCursorNC = { fg = p.bg, bg = p.brt_1 },
-	ErrorMsg = { fg = p.rby_1},
-	WinSeparator = { fg = p.blu_3},
-	Folded = { fg = p.slt_3, bg = p.drk_0},
-	FoldColumn = { fg = p.slt_3,bg =  p.drk_0},
-	SignColumn = { fg = p.slt_3,bg =  p.drk_0},
-	IncSearch = { fg = p.orn_4, bg = p.slt_0},
-	Substitute = { fg = p.orn_4, bg = p.slt_0},
-	LineNr = { fg = p.asn_0 },
-	LineNrAbove = { fg = p.his_0 },
-	LineNrBelow = { fg = p.glu_0 },
-	CursorLineNr = { fg = p.asn_0 },
-	CursorLineSign = { fg = p.asn_0 },
-	CursorLineFold = { fg = p.asn_0 },
-	MatchParen = { fg = p.orn_4 },
-	ModeMsg = { fg = p.slt_5 },
-	MsgArea = { fg = p.slt_5 },
-	MsgSeparator = { fg = p.blu_2 },
-	MoreMsg = { fg = p.blu_3 },
-	NonText = { fg = p.drk_0 },
-	Normal = { fg = p.fg, bg = p.bg },
-	NormalFloat = { fg = p.brt_1 },
-	NormalNC = { fg = p.fg },
-	Pmenu = { fg = p.fg, bg = p.slt_0 },
-	PmenuSel = { fg = p.brt_2, p.bg },
-	PmenuSbar = { fg = p.slt_2 },
-	PmenuThumb = { fg = p.slt_5 },
-	Question = { fg = p.blu_4 },
-	QuickFixLine = { fg = p.brt_3 },
-	Search = { fg = p.orn_4 },
-	SpecialKey = { fg = p.olv_2 },
-	SpellBad = { fg = p.rby_1 },
-	SpellCap = { fg = p.sky_1 },
-	SpellLocal = { fg = p.cyn_1 },
-	SpellRare = { fg = p.pnk_1 },
-	StatusLine = { fg = p.drk_0 },
-	StatusLineNC = { fg = p.drk_0 },
-	TabLine = { fg = p.drk_0 },
-	TabLineFill = { fg = p.dark_1 },
-	TabLineSel = { fg = p.orn_4 },
-	Title = { fg = p.sky_4 },
-	Visual = { fg = p.slt_0 },
-	VisualNOS = { fg = p.plm_0 },
-	WarningMsg = { fg = p.sun_4 },
-	Whitespace = { fg = p.slt_2 },
-	WildMenu = { fg = p.blu_2 },
-	WinBar = { fg = p.drk_0 },
-	WinBarNC = { fg = p.drk_0 },
+	-- base:
+	Normal = t.txt.norm,
+	Cursor = t.txt.reverse,
+	lCursor = t.txt.reverse,
+	CursorIM = t.txt.reverse,
+	TermCursor = t.txt.reverse,
+	TermCursorNC = t.txt.reverse,
+	MatchParen = t.active.norm,
+	EndOfBuffer = t.passive.invis,
+	Whitespace = t.passive.comment,
+
+	-- recurring ui:
+	Folded = t.passive.norm,
+	FoldColumn = t.passive.norm,
+	CursorLineFold = t.idle.passive,
+	SignColumn = t.passive.comment,
+	CursorLineSign = t.passive.norm,
+	LineNrAbove = t.passive.comment,
+	LineNr = t.idle.bold,
+	CursorLineNr = t.idle.passive,
+	LineNrBelow = t.passive.comment,
+	ColorColumn = t.passive.bg,
+	CursorColumn = t.passive.bg,
+	CursorLine = t.passive.bg,
+
+	-- temporary ui:
+	Pmenu = t.idle.passive_br,
+	PmenuSel = t.active.select,
+	PmenuSbar = t.idle.bg,
+	PmenuThumb = t.idle.solid,
+	WildMenu = t.active.select,
+
+	-- state change:
+	DiffAdd = t.state.add,
+	DiffNew = t.state.new,
+	DiffChange = t.state.modified,
+	DiffText = t.state.modified,
+	DiffDelete = t.state.delete,
+
+	-- visual:
+	Visual = t.active.visual,
+	VisualNOS = t.passive.disown,
+	Search = t.idle.search,
+	CurSearch = t.active.search,
+	IncSearch = t.active.search,
+	Substitute = t.active.search,
+
+	-- linting:
+	SpellBad = t.msg.error.under,
+	SpellCap = t.msg.hint.under,
+	SpellLocal = t.msg.info.custom,
+	SpellRare = t.msg.info.rare,
+
+	-- messaging:
+	ErrorMsg = t.msg.error.norm,
+	WarningMsg = t.msg.warn.norm,
+	ModeMsg = t.idle.passive_br,
+	MsgArea = t.passive.fg,
+	MoreMsg = t.idle.norm,
+	MsgSeparator = t.idle.norm,
+	Question = t.idle.norm,
+
+	-- windows 'n such:
+	WinSeparator = t.idle.passive_br,
+	NormalFloat = t.idle.passive_br,
+	NormalNC = t.passive.norm,
+	QuickFixLine = t.idle.passive_br,
+	StatusLine = t.passive.norm,
+	StatusLineNC = t.passive.norm,
+	TabLine = t.passive.norm,
+	TabLineFill = t.passive.bg,
+	TabLineSel = t.idle.passive_br,
+	WinBar = t.idle.passive,
+	WinBarNC = t.passive.norm,
+
+	-- uncertain assignments:
+	Directory = t.h1,
+	Title = t.h1,
+	Conceal = t.idle.norm,
+	NonText = t.passive.fg,
+	SpecialKey = t.txt.inactive,
 }
+
+-- }}}
+
+-- 🏗️ syntax {{{
+hl.syntax = {
+	Comment = t.passive.comment,
+	Constant = t.const.norm,
+	String = t.str.norm,
+	Character = t.str.char,
+	Number = t.num,
+	Boolean = t.bool,
+	Float = t.float,
+	Identifier = t.var.norm,
+	Function = t.func.norm,
+	Statement = t.keyword.norm,
+	Conditional = t.keyword.logic,
+	Repeat = t.keyword.logic,
+	Label = t.keyword.label,
+	Operator = t.operator,
+	Keyword = t.keyword.norm,
+	Exception = t.keyword.label,
+	PreProc = t.keyword.external,
+	Include = t.keyword.link,
+	Define = t.keyword.externaldef,
+	PreCondit = t.keyword.external,
+	Macro = t.func.macro,
+	Type = t.type.norm,
+	StorageClass = t.type.store,
+	Structure = t.type.struct,
+	Typedef = t.type.def,
+	Special = t.special,
+	SpecialChar = t.specialchar,
+	Title = t.h1,
+	Tag = t.var.tag,
+	Delimiter = t.delim.norm,
+	SpecialComment = t.msg.hint.special,
+	Debug = t.msg.hint.special,
+	Ignore = t.passive.fg,
+	Error = t.msg.error.norm,
+	Todo = t.msg.hint.special,
+
+	Bold = t.txt.bold,
+	Italic = t.txt.italic,
+	Underlined = t.txt.underline,
+
+	healthError = t.msg.error.inverse,
+	healthSuccess = t.msg.success.inverse,
+	healthWarning = t.msg.warn.alt,
+
+	markdownHeadingRule = t.passive.comment,
+}
+
 -- }}}
 
 -- 🎄 treesitter {{{
-hl.treesitter = {
-	["@annotation"] = {},
-	["@attribute"] = {},
-	["@boolean"] = {},
-	["@character"] = {},
-	["@comment"] = {},
-	["@conditional"] = {},
-	["@constant"] = {},
-	["@constant.builtin"] = {},
-	["@constant.macro"] = {},
-	["@constructor"] = {},
-	["@error"] = {},
-	["@exception"] = {},
-	["@field"] = {},
-	["@float"] = {},
-	["@function"] = {},
-	["@function.builtin"] = {},
-	["@function.macro"] = {},
-	["@include"] = {},
-	["@keyword"] = {},
-	["@keyword.function"] = {},
-	["@keyword.operator"] = {},
-	["@label"] = {},
-	["@method"] = {},
-	["@namespace"] = {},
-	["@none"] = {},
-	["@number"] = {},
-	["@operator"] = {},
-	["@parameter"] = {},
-	["@parameter.reference"] = {},
-	["@property"] = {},
-	["@punctuation.delimiter"] = {},
-	["@punctuation.bracket"] = {},
-	["@punctuation.special"] = {},
-	["@repeat"] = {},
-	["@string"] = {},
-	["@string.regex"] = {},
-	["@string.escape"] = {},
-	["@symbol"] = {},
-	["@tag"] = {},
-	["@tag.attribute"] = {},
-	["@tag.delimiter"] = {},
-	["@text"] = {},
-	["@text.strong"] = {},
-	["@text.emphasis"] = {},
-	["@text.underline"] = {},
-	["@text.strike"] = {},
-	["@text.title"] = {},
-	["@text.literal"] = {},
-	["@text.uri"] = {},
-	["@text.todo"] = {},
-	["@text.math"] = {},
-	["@text.reference"] = {},
-	["@text.environment"] = {},
-	["@text.environment.name"] = {},
-	["@text.diff.add"] = {},
-	["@text.diff.delete"] = {},
-	["@note"] = {},
-	["@warning"] = {},
-	["@danger"] = {},
-	["@type"] = {},
-	["@type.builtin"] = {},
-	["@variable"] = {},
-	["@variable.builtin"] = {},
-}
+hl.treesitter = { -- https://github.com/nvim-treesitter/nvim-treesitter/blob/master/CONTRIBUTING.md
 
+	-- Misc
+	["@comment"] = t.passive.comment, -- line and block comments
+	["@comment.documentation"] = t.passive.bg, -- comments documenting code
+	["@error"] = t.msg.error.norm, -- syntax/parser errors
+	["@none"] = t.txt.norm, -- completely disable the highlight
+	["@preproc"] = t.keyword.external, -- various preprocessor directives & shebangs
+	["@define"] = t.keyword.external, -- preprocessor definition directives
+	["@operator"] = t.operator, -- symbolic operators (e.g. `+` / `*`)
+
+	-- Punctuation
+	["@punctuation.delimiter"] = t.delim.norm, --` / `.` / `,`)
+	["@punctuation.bracket"] = t.delim.bracket, -- brackets (e.g. `()` / `{}` / `[]`)
+	["@punctuation.special"] = t.special, -- special symbols (e.g. `{}` in string interpolation)
+
+	-- Literals
+	["@string"] = t.str.norm, -- string literals
+	["@string.documentation"] = t.str.doc, -- string documenting code (e.g. Python docstrings)
+	["@string.regex"] = t.str.regex, -- regular expressions
+	["@string.escape"] = t.str.char, -- escape sequences
+	["@string.special"] = t.str.special, -- other special strings (e.g. dates)
+	["@character"] = t.str.char, -- character literals
+	["@character.special"] = t.str.special, -- special characters (e.g. wildcards)
+	["@boolean"] = t.bool, -- boolean literals
+	["@number"] = t.num, -- numeric literals
+	["@float"] = t.float, -- floating-point number literals
+
+	-- Functions
+	["@function"] = t.func.norm, -- function definitions
+	["@function.builtin"] = t.func.builtin, -- built-in functions
+	["@function.call"] = t.func.norm, -- function calls
+	["@function.macro"] = t.func.macro, -- preprocessor macros
+	["@method"] = t.func.norm, -- method definitions
+	["@method.call"] = t.func.norm, -- method calls
+	["@constructor"] = t.typedef, -- constructor calls and definitions
+	["@parameter"] = t.var.param, -- parameters of a function
+
+	-- Keywords
+	["@keyword"] = t.keyword.norm, -- various keywords
+	["@keyword.coroutine"] = t.keyword.def, -- keywords related to coroutines (e.g. `go` in Go, `async/await` in Python)
+	["@keyword.function"] = t.keyword.def, -- keywords that define a function (e.g. `func` in Go, `def` in Python)
+	["@keyword.operator"] = t.keyword.logic, -- operators that are English words (e.g. `and` / `or`)
+	["@keyword.return"] = t.keyword.flow, -- keywords like `return` and `yield`
+	["@conditional"] = t.keyword.logic, -- keywords related to conditionals (e.g. `if` / `else`)
+	["@conditional.ternary"] = t.keyword.flow, -- ternary operator (e.g. `?` / `:`)
+	["@repeat"] = t.keyword.logic, -- keywords related to loops (e.g. `for` / `while`)
+	["@debug"] = t.msg.hint.special, -- keywords related to debugging
+	["@label"] = t.keyword.label, -- GOTO and other labels (e.g. `label:` in C)
+	["@include"] = t.keyword.link, -- keywords for including modules (e.g. `import` / `from` in Python)
+	["@exception"] = t.keyword.label, -- keywords related to exceptions (e.g. `throw` / `catch`)
+
+	-- Types
+	["@type"] = t.type.norm, -- type or class definitions and annotations
+	["@type.builtin"] = t.type.builtin, -- built-in types
+	["@type.definition"] = t.type.def, -- type definitions (e.g. `typedef` in C)
+	["@type.qualifier"] = t.type.struct, -- type qualifiers (e.g. `const`)
+	["@storageclass"] = t.type.store, -- modifiers that affect storage in memory or life-time
+	["@attribute"] = t.keyword.external, -- attribute annotations (e.g. Python decorators)
+	["@field"] = t.var.norm, -- object and struct fields
+	["@property"] = t.var.norm, -- similar to `@field`
+
+	-- Identifiers
+	["@variable"] = t.var.norm, -- various variable names
+	["@variable.builtin"] = t.var.builtin, -- built-in variable names (e.g. `this`)
+	["@constant"] = t.const.norm, -- constant identifiers
+	["@constant.builtin"] = t.const.builtin, -- built-in constant values
+	["@constant.macro"] = t.const.external, -- constants defined by the preprocessor
+	["@namespace"] = t.var.builtin, -- modules or namespaces
+	["@symbol"] = t.var.builtin, -- symbols or atoms
+
+	-- Text
+	["@text"] = t.txt.norm, -- non-structured text
+	["@text.strong"] = t.txt.bold, -- bold text
+	["@text.emphasis"] = t.txt.italic, -- text with emphasis
+	["@text.underline"] = t.txt.underline, -- underlined text
+	["@text.strike"] = t.txt.strike, -- strikethrough text
+	["@text.title"] = t.txt.title, -- text that is part of a title
+	["@text.literal"] = t.str.norm, -- literal or verbatim text (e.g., inline code)
+	["@text.quote"] = t.txt.minor, -- text quotations
+	["@text.uri"] = t.link, -- URIs (e.g. hyperlinks)
+	["@text.math"] = t.msg.hint.special, -- math environments (e.g. `$ ... $` in LaTeX)
+	["@text.environment"] = t.type.norm, -- text environments of markup languages
+	["@text.environment.name"] = t.type.def, -- text indicating the type of an environment
+	["@text.reference"] = t.passive.comment, -- text references, footnotes, citations, etc.
+	["@text.todo"] = t.msg.hint.special, -- todo notes
+	["@text.note"] = t.msg.info.norm, -- info notes
+	["@text.warning"] = t.warning, -- warning notes
+	["@text.danger"] = t.msg.error.norm, -- danger/error notes
+	["@text.diff.add"] = t.state.add, -- added text (for diff files)
+	["@text.diff.delete"] = t.state.delete, -- deleted text (for diff files)
+
+	-- Tags
+	["@tag"] = t.var.tag, -- XML tag names
+	["@tag.attribute"] = t.var.attr, -- XML tag attributes
+	["@tag.delimiter"] = t.delim.norm, -- XML tag delimiters
+}
 -- }}}
 
--- 🗃️ filetypes {{{
-hl.filetypes.markdown = {
-	markdownBlockquote = {},
-	markdownBold = {},
-	markdownBoldDelimiter = {},
-	markdownCode = {},
-	markdownCodeBlock = {},
-	markdownCodeDelimiter = {},
-	markdownH1 = {},
-	markdownH2 = {},
-	markdownH3 = {},
-	markdownH4 = {},
-	markdownH5 = {},
-	markdownH6 = {},
-	markdownHeadingDelimiter = {},
-	markdownHeadingRule = {},
-	markdownId = {},
-	markdownIdDeclaration = {},
-	markdownItalic = {},
-	markdownItalicDelimiter = {},
-	markdownLinkDelimiter = {},
-	markdownLinkText = {},
-	markdownLinkTextDelimiter = {},
-	markdownListMarker = {},
-	markdownOrderedListMarker = {},
-	markdownRule = {},
-	markdownUrl = {},
-	markdownUrlDelimiter = {},
-	markdownUrlTitleDelimiter = {},
-}
+-- 🚏 treesitter queries {{{
+hl.treesitter_queries = { -- https://github.com/nvim-treesitter/nvim-treesitter/tree/master/queries
 
+	--help
+	["@label.help"] = t.var.tag,
+	["@text.reference"] = t.link,
+	["@text.literal"] = t.passive.fg,
+
+	-- toml
+	["@type.toml"] = t.var.tag,
+	["@property.toml"] = t.var.param,
+}
 -- }}}
 
 -- 🔌 plugins {{{
 
 hl.plugins.lsp = {
-	LspCxxHlGroupEnumConstant = {},
-	LspCxxHlGroupMemberVariable = {},
-	LspCxxHlGroupNamespace = {},
-	LspCxxHlSkippedRegion = {},
-	LspCxxHlSkippedRegionBeginEnd = {},
+	DiagnosticError = t.msg.error.norm,
+	DiagnosticHint = t.msg.hint.norm,
+	DiagnosticInfo = t.msg.info.norm,
+	DiagnosticWarn = t.msg.warn.norm,
 
-	DiagnosticError = {},
-	DiagnosticHint = {},
-	DiagnosticInfo = {},
-	DiagnosticWarn = {},
+	DiagnosticVirtualTextError = t.msg.error.virtual,
+	DiagnosticVirtualTextWarn = t.msg.warn.virtual,
+	DiagnosticVirtualTextInfo = t.msg.info.virtual,
+	DiagnosticVirtualTextHint = t.msg.hint.virtual,
 
-	DiagnosticVirtualTextError = {},
-	DiagnosticVirtualTextWarn = {},
-	DiagnosticVirtualTextInfo = {},
-	DiagnosticVirtualTextHint = {},
+	DiagnosticUnderlineError = t.msg.error.under,
+	DiagnosticUnderlineHint = t.msg.hint.under,
+	DiagnosticUnderlineInfo = t.msg.info.under,
+	DiagnosticUnderlineWarn = t.msg.warn.under,
 
-	DiagnosticUnderlineError = {},
-	DiagnosticUnderlineHint = {},
-	DiagnosticUnderlineInfo = {},
-	DiagnosticUnderlineWarn = {},
-
-	LspReferenceText = {},
-	LspReferenceWrite = {},
-	LspReferenceRead = {},
-
-	LspCodeLens = {},
-	LspCodeLensSeparator = {},
-}
-
-hl.plugins.cmp = {
-	CmpItemAbbr = {},
-	CmpItemAbbrDeprecated = {},
-	CmpItemAbbrMatch = {},
-	CmpItemAbbrMatchFuzzy = {},
-	CmpItemMenu = {},
-	CmpItemKind = {},
-}
-
-hl.plugins.whichkey = {
-	WhichKey = {},
-	WhichKeyDesc = {},
-	WhichKeyGroup = {},
-	WhichKeySeperator = {},
-}
-
--- comment
-hl.plugins.diffview = {
-	DiffviewFilePanelTitle = {},
-	DiffviewFilePanelCounter = {},
-	DiffviewFilePanelFileName = {},
-	DiffviewNormal = {},
-	DiffviewCursorLine = {},
-	DiffviewVertSplit = {},
-	DiffviewSignColumn = {},
-	DiffviewStatusLine = {},
-	DiffviewStatusLineNC = {},
-	DiffviewEndOfBuffer = {},
-	DiffviewFilePanelRootPath = {},
-	DiffviewFilePanelPath = {},
-	DiffviewFilePanelInsertions = {},
-	DiffviewFilePanelDeletions = {},
-	DiffviewStatusAdded = {},
-	DiffviewStatusUntracked = {},
-	DiffviewStatusModified = {},
-	DiffviewStatusRenamed = {},
-	DiffviewStatusCopied = {},
-	DiffviewStatusTypeChange = {},
-	DiffviewStatusUnmerged = {},
-	DiffviewStatusUnknown = {},
-	DiffviewStatusDeleted = {},
-	DiffviewStatusBroken = {},
+	LspReferenceText = t.txt.bold,
+	LspReferenceWrite = t.active.search,
+	LspReferenceRead = t.idle.ref,
 }
 
 hl.plugins.gitsigns = {
-	GitSignsAdd = {},
-	GitSignsAddLn = {},
-	GitSignsAddNr = {},
-	GitSignsChange = {},
-	GitSignsChangeLn = {},
-	GitSignsChangeNr = {},
-	GitSignsDelete = {},
-	GitSignsDeleteLn = {},
-	GitSignsDeleteNr = {},
-}
-
-hl.plugins.neo_tree = {
-	NeoTreeNormal = {},
-	NeoTreeNormalNC = {},
-	NeoTreeVertSplit = {},
-	NeoTreeWinSeparator = {},
-	NeoTreeEndOfBuffer = {},
-	NeoTreeRootName = {},
-	NeoTreeGitAdded = {},
-	NeoTreeGitDeleted = {},
-	NeoTreeGitModified = {},
-	NeoTreeGitConflict = {},
-	NeoTreeGitUntracked = {},
-	NeoTreeIndentMarker = {},
-	NeoTreeSymbolicLinkTarget = {},
-}
-
-hl.plugins.neotest = {
-	NeotestAdapterName = {},
-	NeotestDir = {},
-	NeotestExpandMarker = {},
-	NeotestFailed = {},
-	NeotestFile = {},
-	NeotestFocused = {},
-	NeotestIndent = {},
-	NeotestMarked = {},
-	NeotestNamespace = {},
-	NeotestPassed = {},
-	NeotestRunning = {},
-	NeotestWinSelect = {},
-	NeotestSkipped = {},
-	NeotestTarget = {},
-	NeotestTest = {},
-	NeotestUnknown = {},
+	GitSignsAdd = t.state.add,
+	GitSignsAddLn = t.state.add,
+	GitSignsAddNr = t.state.add,
+	GitSignsChange = t.state.modified,
+	GitSignsChangeLn = t.state.modified,
+	GitSignsChangeNr = t.state.modified,
+	GitSignsDelete = t.state.delete,
+	GitSignsDeleteLn = t.state.delete,
+	GitSignsDeleteNr = t.state.delete,
 }
 
 hl.plugins.nvim_tree = {
-	NvimTreeNormal = {},
-	NvimTreeVertSplit = {},
-	NvimTreeEndOfBuffer = {},
-	NvimTreeRootFolder = {},
-	NvimTreeGitDirty = {},
-	NvimTreeGitNew = {},
-	NvimTreeGitDeleted = {},
-	NvimTreeSpecialFile = {},
-	NvimTreeIndentMarker = {},
-	NvimTreeImageFile = {},
-	NvimTreeSymlink = {},
-	NvimTreeFolderName = {},
+	NvimTreeNormal = t.idle.passive_br,
+	NvimTreeEndOfBuffer = t.idle.invis_br,
+	NvimTreeRootFolder = t.txt.title,
+	NvimTreeGitDirty = t.state.modified,
+	NvimTreeGitNew = t.state.new,
+	NvimTreeGitDeleted = t.state.new,
+	NvimTreeSpecialFile = t.special,
+	NvimTreeFolderName = t.var.tag,
 }
 
 hl.plugins.telescope = {
-	TelescopeBorder = {},
-	TelescopePromptBorder = {},
-	TelescopeResultsBorder = {},
-	TelescopePreviewBorder = {},
-	TelescopeMatching = {},
-	TelescopePromptPrefix = {},
-	TelescopeSelection = {},
-	TelescopeSelectionCaret = {},
+	TelescopeNormal = t.idle.passive_br,
+	TelescopeBorder = t.idle.passive_br,
+	TelescopeTitle = t.idle.bold,
+	TelescopeMatching = t.active.search,
+	TelescopePromptPrefix = t.active.norm,
+	TelescopeSelection = t.active.select,
+	TelescopeSelectionCaret = t.active.select,
 }
 
-hl.plugins.dashboard = {
-	DashboardShortCut = {},
-	DashboardHeader = {},
-	DashboardCenter = {},
-	DashboardFooter = {},
-}
-
-hl.plugins.outline = {
-	FocusedSymbol = {},
-	AerialLine = {},
-}
-
-hl.plugins.navic = {
-	NavicText = {},
-	NavicSeparator = {},
-}
-
-hl.plugins.ts_rainbow = {
-	rainbowcol1 = {},
-	rainbowcol2 = {},
-	rainbowcol3 = {},
-	rainbowcol4 = {},
-	rainbowcol5 = {},
-	rainbowcol6 = {},
-	rainbowcol7 = {},
-}
-
-hl.plugins.indent_blankline = {
-	IndentBlanklineIndent1 = {},
-	IndentBlanklineIndent2 = {},
-	IndentBlanklineIndent3 = {},
-	IndentBlanklineIndent4 = {},
-	IndentBlanklineIndent5 = {},
-	IndentBlanklineIndent6 = {},
-	IndentBlanklineChar = {},
-	IndentBlanklineContext = {},
-	IndentBlanklineContextChar = {},
-	IndentBlanklineContextStart = {},
-	IndentBlanklineContextSpaceChar = {},
-}
 -- }}}
 
 return highlights
-
--- :so $VIMRUNTIME/syntax/hitest.vim
--- :h group-name
--- :h highlight
