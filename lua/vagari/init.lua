@@ -19,9 +19,3 @@ vagari.load = function()
 end
 
 return vagari
-
--- https://github.com/nvim-treesitter/nvim-treesitter/blob/master/CONTRIBUTING.md
--- :so $VIMRUNTIME/syntax/hitest.vim
--- :telescope highlights
--- :h group-name
--- :h highlight

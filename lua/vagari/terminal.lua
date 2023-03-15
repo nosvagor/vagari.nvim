@@ -1,7 +1,7 @@
 local terminal = {}
 local p = require("vagari.palette")
 
--- terminal colors tradit
+-- traditional terminal colors
 -- /-------------------------------------------------------------\
 -- | black   red     green    blue     magenta  cyan     white   | color
 -- | color0  color1  color2   color4   color5   color6   color7  | normal
@@ -9,7 +9,7 @@ local p = require("vagari.palette")
 -- \-------------------------------------------------------------/
 
 function terminal.setup()
-	vim.g.terminal_color_0 = p.drk_0
+	vim.g.terminal_color_0 = p.slt_0
 	vim.g.terminal_color_1 = p.rby_2
 	vim.g.terminal_color_2 = p.erm_2
 	vim.g.terminal_color_3 = p.sun_2
