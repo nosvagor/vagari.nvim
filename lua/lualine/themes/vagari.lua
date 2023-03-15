@@ -15,11 +15,11 @@ local vagari = {
 		b = { fg = p.orn_3, bg = p.glc_1 },
 	},
 	visual = {
-		a = { bg = p.orn_2, fg = p.drk_0 },
+		a = { bg = p.prp_2, fg = p.drk_0 },
 		b = { fg = p.prp_2, bg = p.glc_1 },
 	},
 	replace = {
-		a = { bg = p.orn_2, fg = p.drk_0 },
+		a = { bg = p.emr_2, fg = p.drk_0 },
 		b = { fg = p.emr_2, bg = p.glc_1 },
 	},
 }
