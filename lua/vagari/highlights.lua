@@ -354,6 +354,7 @@ hl.plugins.telescope = {
 	TelescopeTitle = t.idle.bold,
 	TelescopePromptNormal = t.active.input,
 	TelescopePromptBorder = t.active.input,
+	TelescopePromptTitle = t.active.input,
 	TelescopeMatching = t.active.search,
 	TelescopePromptPrefix = t.active.norm,
 	TelescopeSelection = t.active.select,
