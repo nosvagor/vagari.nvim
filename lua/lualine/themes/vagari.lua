@@ -22,6 +22,11 @@ local vagari = {
 		a = { bg = p.emr_2, fg = p.drk_0 },
 		b = { fg = p.emr_2, bg = p.glc_1 },
 	},
+	-- inactive = { -- TODO: (inactive color config not tested)
+	-- 	a = {},
+	-- 	b = {},
+	-- 	c = {},
+	-- },
 }
 
 return vagari

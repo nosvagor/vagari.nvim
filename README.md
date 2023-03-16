@@ -36,7 +36,7 @@
 <hr>
 <blockquote>
     <img src="https://img.shields.io/static/v1?color=aeb9f8&logo=neovim&labelColor=222536&logoColor=aeb9f8&style=flat&message=βeta (0.4)&label=vagari.nvim"><br>
-    &emsp;&emsp;&emsp;&rarr; a port <a href="https://github.com/nosvagor/vagari"><i>vagari</i></a> color
+    &emsp;&emsp;&emsp;&rarr; a port of the <a href="https://github.com/nosvagor/vagari"><i>vagari</i></a> color
     scheme for <a href="https://github.com/neovim/neovim#--documentation-chat">neovim</a>,
     written in <b>lua</b>, and heavily influenced by <a href="https://github.com/nvim-treesitter/nvim-treesitter#nvim-treesitter">treesitter</a>.
 </blockquote>
@@ -73,8 +73,9 @@ Customized settings for vagari are not supported, <i>yet</i>. The color scheme
 needs to mature before premature abstraction limits backwards
 compatibility. For now, a strong default is being explored and developed.
 
-In the meantime, I suggest forking the color scheme and editing settings you'd prefer to
-change. Consider a pull request after your done editing, perhaps your idea is a better for the default settings!
+In the meantime, I suggest forking the color scheme and editing settings you'd
+prefer to change. Consider a pull request after you're done editing, perhaps
+your idea is a better for the default settings!
 
 - Extend or modify the palette here: [palette.lua](https://github.com/nosvagor/vagari.nvim/blob/main/lua/vagari/palette.lua)
 - [thalamus.lua](https://github.com/nosvagor/vagari.nvim/blob/main/lua/vagari/thalamus.lua)
@@ -89,6 +90,32 @@ In the future, the ability to simply override options will be supplied, once
 various integrations mature.
 
 <br>
+
+
+## Integrations
+
+<details>
+    <summary>
+       <a href="https://github.com/nvim-lualine/lualine.nvim#lualinenvim">lualine.nvim</a>
+    </summary>
+</details>
+
+```lua
+require('lualine').setup {
+    options = {
+        theme = "catppuccin"
+        -- ... the rest of your lualine config
+    }
+}
+
+-- or
+
+local p = require("vagari.palette")
+require('lualine').setup {
+
+    }
+
+```
 
 <h2>
  🌈 Inspiration
