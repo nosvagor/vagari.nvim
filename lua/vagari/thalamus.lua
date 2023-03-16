@@ -38,7 +38,7 @@ thalamus = {
 
 	active = {
 		norm = { fg = p.orn_4 },
-		input = { fg = p.orn_4, bg = p.glc_2 },
+		input = { fg = p.orn_4, bg = p.glc_0 },
 		select = { fg = p.orn_4, bg = p.glc_2, fmt = "bold" },
 		visual = { bg = p.glc_2, fmt = "bold" },
 		search = { fg = p.orn_1, fmt = "bold" },
