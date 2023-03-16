@@ -17,7 +17,7 @@ thalamus = {
 
 	passive = {
 		comment = { fg = p.slt_2 },
-		invis = { fg = p.bg, bg = p.bg },
+		invis = { fg = p.bg },
 		disown = { fg = p.blu_0, bg = p.drk_1 },
 		norm = { fg = p.glc_4, bg = p.drk_0 },
 		fg = { fg = p.glc_4 },
@@ -38,6 +38,7 @@ thalamus = {
 
 	active = {
 		norm = { fg = p.orn_4 },
+		input = { fg = p.orn_4, bg = p.glc_2 },
 		select = { fg = p.orn_4, bg = p.glc_2, fmt = "bold" },
 		visual = { bg = p.glc_2, fmt = "bold" },
 		search = { fg = p.orn_1, fmt = "bold" },

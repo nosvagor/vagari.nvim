@@ -58,7 +58,7 @@ hl.builtin = {
 	TermCursor = t.txt.reverse,
 	TermCursorNC = t.txt.reverse,
 	MatchParen = t.active.norm,
-	EndOfBuffer = {},
+	EndOfBuffer = t.passive.invis,
 	Whitespace = t.passive.comment,
 
 	-- recurring ui:
@@ -352,7 +352,7 @@ hl.plugins.telescope = {
 	TelescopeNormal = t.idle.passive_br,
 	TelescopeBorder = t.idle.passive_br,
 	TelescopeTitle = t.idle.bold,
-	TelescopePromptBorder = t.active.norm,
+	TelescopePromptBorder = t.active.input,
 	TelescopeMatching = t.active.search,
 	TelescopePromptPrefix = t.active.norm,
 	TelescopeSelection = t.active.select,
