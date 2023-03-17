@@ -57,6 +57,7 @@ thalamus = {
 			inverse = { fg = p.emr_2, fmt = "reverse" },
 		},
 		error = {
+			builtin = { fg = p.rby_1 },
 			norm = { fg = p.rby_3 },
 			inverse = { fg = p.rby_2, fmt = "reverse" },
 			under = { sp = p.rby_1, fmt = "undercurl" },
