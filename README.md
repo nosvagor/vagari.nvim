@@ -48,20 +48,40 @@
 
 > **Note** requires [treesitter 0.8+](https://github.com/nvim-treesitter/nvim-treesitter)
 
-Install using `packer`
+Install using [packer](https://github.com/wbthomason/packer.nvim#packernvim)
 
 ```lua
-use { "nosvagor/vagari.nvim" }
-```
-Inside `init.lua`
+use "nosvagor/vagari.nvim",
 
-```lua
+-- then inside init.lua
 vim.cmd(colorscheme vagari)
 ```
-Or manually, while in neovim
+Install using [lazy](https://github.com/folke/lazy.nvim#-lazynvim)
 
-```vim
-:colorscheme vagari
+```lua
+require("lazy").setup({
+    {
+        "nosvagor/vagari.nvim",
+        priority = 1000,
+        config = function()
+            vim.cmd.colorscheme("vagari")
+        end,
+    },
+    -- ...
+```
+
+Relevant treesitter setups:
+```lua
+
+require("nvim-treesitter.configs").setup({
+    -- simmply install all parsers:
+	-- ensure_installed = "all",
+
+    -- or at least install some essential ones:
+    ensure_installed = { "c", "lua", "vim", "help", "query", "comment" }, -- https://github.com/nvim-treesitter/nvim-treesitter/blob/master/lua/nvim-treesitter/parsers.lua
+
+    -- ...
+
 ```
 
 <br>
@@ -93,28 +113,104 @@ various integrations mature.
 
 ## Integrations
 
-<details>
+<details closed>
     <summary>
        <a href="https://github.com/nvim-lualine/lualine.nvim#lualinenvim">lualine.nvim</a>
     </summary>
-</details>
 
 ```lua
 require('lualine').setup {
     options = {
-        theme = "catppuccin"
+        theme = "vagari"
         -- ... the rest of your lualine config
     }
 }
-
--- or
-
-local p = require("vagari.palette")
-require('lualine').setup {
-
-    }
-
 ```
+
+Or import edit the theme table directly
+([lua/lualine/themes/vagari.lua](https://github.com/nosvagor/vagari.nvim/blob/main/lua/lualine/themes/vagari.lua)):
+```lua
+local p = require("vagari.palette")
+
+local custom_vagari = {
+	normal = {
+		a = { bg = p.blu_2, fg = p.drk_0 },
+		b = { fg = p.blu_2, bg = p.glc_1 },
+		c = { fg = p.glc_4, bg = p.drk_0 },
+	},
+	insert = {
+		a = { bg = p.grn_2, fg = p.drk_0 },
+		b = { fg = p.grn_2, bg = p.glc_1 },
+	},
+	command = {
+		a = { bg = p.orn_2, fg = p.drk_0 },
+		b = { fg = p.orn_3, bg = p.glc_1 },
+	},
+	visual = {
+		a = { bg = p.prp_2, fg = p.drk_0 },
+		b = { fg = p.prp_2, bg = p.glc_1 },
+	},
+	replace = {
+		a = { bg = p.emr_2, fg = p.drk_0 },
+		b = { fg = p.emr_2, bg = p.glc_1 },
+	},
+	-- inactive = { -- TODO: (inactive color config not tested)
+	-- 	a = {},
+	-- 	b = {},
+	-- 	c = {},
+	-- },
+}
+
+require('lualine').setup {
+    options = {
+        theme = custom_vagari
+        -- ... the rest of your lualine config
+    }
+}
+```
+
+Or, if you have custom modules, e.g.:
+
+```lua
+local p = require("vagari.palette")
+
+local filename = {
+    "filename",
+    file_status = true,
+    path = 0,
+    icon = "",
+    symbols = {
+        modified = "🞊",
+        readonly = "",
+        unnamed = "名前?",
+    },
+    color = function()
+        local mode_color = {
+            n = p.blu_4,
+            i = p.grn_4,
+            v = p.prp_4,
+            V = p.prp_4,
+            c = p.orn_4,
+            R = p.emr_4,
+            s = p.cyn_4,
+            S = p.cyn_4,
+            [""] = p.prp_4,
+        }
+        return { fg = mode_color[vim.fn.mode()] }
+    end,
+}
+
+require('lualine').setup {
+    -- ...
+	sections = {
+		lualine_a = { mode }, -- mode is customized in this example
+		lualine_b = { branch, filename }, -- so is branch
+    -- ...
+}
+```
+</details>
+
+<br>
 
 <h2>
  🌈 Inspiration
