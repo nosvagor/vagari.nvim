@@ -36,12 +36,13 @@
 <hr>
 <blockquote>
     <img src="https://img.shields.io/static/v1?color=aeb9f8&logo=neovim&labelColor=222536&logoColor=aeb9f8&style=flat&message=βeta (0.4)&label=vagari.nvim"><br>
-    &emsp;&emsp;&emsp;&rarr; a port of the <a href="https://github.com/nosvagor/vagari"><i>vagari</i></a> color
+    &emsp;&emsp;&rarr; a port of the <a href="https://github.com/nosvagor/vagari"><i>vagari</i></a> color
     scheme for <a href="https://github.com/neovim/neovim#--documentation-chat">neovim</a>,
     written in <b>lua</b>, and heavily influenced by <a href="https://github.com/nvim-treesitter/nvim-treesitter#nvim-treesitter">treesitter</a>.
 </blockquote>
-<!-- }}} --->
 <hr>
+<!-- }}} --->
+
 <br>
 
 ## Basic Usage
