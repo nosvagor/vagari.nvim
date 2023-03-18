@@ -75,11 +75,13 @@ Relevant treesitter setups:
 ```lua
 
 require("nvim-treesitter.configs").setup({
-    -- simmply install all parsers:
-	-- ensure_installed = "all",
+    -- simmply install all parsers
+    ensure_installed = "all",
+    -- ...
 
     -- or at least install some essential ones:
-    ensure_installed = { "c", "lua", "vim", "help", "query", "comment" }, -- https://github.com/nvim-treesitter/nvim-treesitter/blob/master/lua/nvim-treesitter/parsers.lua
+    ensure_installed = { "c", "lua", "vim", "help", "query", "comment" },
+    -- https://github.com/nvim-treesitter/nvim-treesitter/blob/master/lua/nvim-treesitter/parsers.lua
 
     -- ...
 
