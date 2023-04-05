@@ -1,33 +1,33 @@
 <!-- ☄️  Heading {{{ -->
 <h1 align="center">
-   ☄️ vagari.nvim ☄️
+   ☄️ vagari.nvim 👨‍💻
 </h1>
 
 <p align="center">
 <a href="https://github.com/nosvagor/vagari.nvim/discussions">
     <img
-        src="https://img.shields.io/github/discussions/nosvagor/vagari.nvim?color=7492ef&logo=github&labelColor=222536&logoColor=4a6be3&style=for-the-badge"
+        src="https://img.shields.io/github/discussions/nosvagor/vagari.nvim?color=7492ef&logo=github&labelColor=222536&logoColor=7492ef&style=for-the-badge"
         title="alright then, keep your secrets"
     >
 </a>
 &nbsp;
 <a href="https://github.com/nosvagor/vagari.nvim/network/members">
     <img
-        src="https://img.shields.io/github/forks/nosvagor/vagari.nvim?color=a188df&logo=git&labelColor=222536&logoColor=7f61cd&style=for-the-badge"
-        title="I am tormented with an everlasting itch for things remote. I love to sail forbidden seas, and land on barbarous coasts."
+        src="https://img.shields.io/github/forks/nosvagor/vagari.nvim?color=a188df&logo=git&labelColor=222536&logoColor=a188df&style=for-the-badge"
+        title="I am tormented with an everlasting itch for things remote. I love to sail forbidden seas..."
     >
 </a>
 &nbsp;
 <a href="https://github.com/nosvagor/vagari.nvim/contributors">
     <img
-        src="https://img.shields.io/github/contributors/nosvagor/vagari.nvim?color=85ba6d&logo=gitea&labelColor=222536&logoColor=48a95b&style=for-the-badge"
+        src="https://img.shields.io/github/contributors/nosvagor/vagari.nvim?color=85ba6d&logo=gitea&labelColor=222536&logoColor=85ba6d&style=for-the-badge"
         title="gotta do the cooking by the book"
     >
 </a>
 &nbsp;
 <a href="https://github.com/nosvagor/vagari.nvim/issues">
     <img
-        src="https://img.shields.io/github/issues/nosvagor/vagari.nvim?color=f8b486&logo=fireship&labelColor=222536&logoColor=ea834b&style=for-the-badge"
+        src="https://img.shields.io/github/issues/nosvagor/vagari.nvim?color=f2a170&logo=fireship&labelColor=222536&logoColor=f2a170&style=for-the-badge"
         title="this is not fine!!"
     >
 </a>
