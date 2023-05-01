@@ -130,7 +130,7 @@ thalamus = {
 
 	type = {
 		struct = { fg = p.prp_0, fmt = "italic" },
-		store = { fg = p.blu_0, fmt = "italic,bold" },
+		store = { fg = p.sky_1, fmt = "italic" },
 		builtin = { fg = p.blu_0, fmt = "italic" },
 		norm = { fg = p.blu_1, fmt = "italic" },
 		def = { fg = p.blu_2, fmt = "bold" },
