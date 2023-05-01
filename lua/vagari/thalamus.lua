@@ -121,7 +121,6 @@ thalamus = {
 	keyword = {
 		external = { fg = p.asn_2, fmt = "italic" },
 		externaldef = { fg = p.asn_2, fmt = "italic,bold" },
-		link = { fg = p.tyr_2, fmt = "italic" },
 		logic = { fg = p.prp_1, fmt = "italic" },
 		norm = { fg = p.prp_2, fmt = "italic" },
 		label = { fg = p.prp_3 },

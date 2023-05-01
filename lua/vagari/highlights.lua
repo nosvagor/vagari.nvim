@@ -154,7 +154,7 @@ hl.syntax = {
 	Keyword = t.keyword.norm,
 	Exception = t.keyword.label,
 	PreProc = t.keyword.external,
-	Include = t.keyword.link,
+	Include = t.keyword.external,
 	Define = t.keyword.externaldef,
 	PreCondit = t.keyword.external,
 	Macro = t.func.macro,
@@ -237,7 +237,7 @@ hl.treesitter =
 		["@repeat"] = t.keyword.logic, -- keywords related to loops (e.g. `for` / `while`)
 		["@debug"] = t.msg.hint.special, -- keywords related to debugging
 		["@label"] = t.keyword.label, -- GOTO and other labels (e.g. `label:` in C)
-		["@include"] = t.keyword.link, -- keywords for including modules (e.g. `import` / `from` in Python)
+		["@include"] = t.keyword.external, -- keywords for including modules (e.g. `import` / `from` in Python)
 		["@exception"] = t.keyword.label, -- keywords related to exceptions (e.g. `throw` / `catch`)
 
 		-- Types
@@ -284,7 +284,6 @@ hl.treesitter =
 		["@tag"] = t.var.tag, -- XML tag names
 		["@tag.attribute"] = t.var.attr, -- XML tag attributes
 		["@tag.delimiter"] = t.delim.norm, -- XML tag delimiters
-
 
         --LSP
         ["@lsp.type.comment"] = hl.treesitter[ "@comment"],
