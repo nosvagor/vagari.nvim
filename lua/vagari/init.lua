@@ -1,8 +1,8 @@
 local vagari = {}
 
 vagari.load = function()
-	if vim.version().minor < 8 then
-		vim.notify_once("vagari.nvim: neovim 0.8 or higher required")
+	if vim.version().minor < 9 then
+		vim.notify_once("vagari.nvim: neovim 0.9 or higher required")
 		return
 	end
 
