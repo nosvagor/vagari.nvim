@@ -106,7 +106,7 @@ thalamus = {
 
 	const = {
 		norm = { fg = p.sun_3 },
-		builtin = { fg = p.sun_2, fmt = "italic" },
+		builtin = { fg = p.sun_0, fmt = "italic" },
 		external = { fg = p.asn_3, fmt = "italic" },
 	},
 
