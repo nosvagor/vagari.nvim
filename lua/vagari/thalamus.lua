@@ -126,6 +126,7 @@ thalamus = {
 		label = { fg = p.prp_3 },
 		def = { fg = p.prp_2, fmt = "bold,italic" },
 		flow = { fg = p.prp_1, fmt = "bold,italic" },
+		exception = { fg = p.rby_2, fmt = "bold,italic" },
 	},
 
 	type = {

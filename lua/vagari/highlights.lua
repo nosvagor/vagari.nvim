@@ -238,7 +238,7 @@ hl.treesitter =
 		["@debug"] = t.msg.hint.special, -- keywords related to debugging
 		["@label"] = t.keyword.label, -- GOTO and other labels (e.g. `label:` in C)
 		["@include"] = t.keyword.external, -- keywords for including modules (e.g. `import` / `from` in Python)
-		["@exception"] = t.keyword.label, -- keywords related to exceptions (e.g. `throw` / `catch`)
+		["@exception"] = t.keyword.exception, -- keywords related to exceptions (e.g. `throw` / `catch`)
 
 		-- Types
 		["@type"] = t.type.norm, -- type or class definitions and annotations
