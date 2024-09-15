@@ -113,7 +113,7 @@ hl.builtin = {
 	Question = t.idle.norm,
 
 	-- windows 'n such:
-	WinSeparator = t.idle.passive_br,
+	WinSeparator = t.idle.passive,
 	NormalFloat = t.idle.passive_br,
 	NormalNC = t.passive.norm,
 	QuickFixLine = t.idle.passive_br,
@@ -285,28 +285,28 @@ hl.treesitter =
 		["@tag.attribute"] = t.var.attr, -- XML tag attributes
 		["@tag.delimiter"] = t.delim.norm, -- XML tag delimiters
 
-        --LSP
-        ["@lsp.type.comment"] = hl.treesitter[ "@comment"],
-        ["@lsp.type.enum"] = hl.treesitter["@type"],
-        ["@lsp.type.enumMember"] = hl.treesitter["@constant.builtin"],
-        ["@lsp.type.interface"] = hl.treesitter["@type"],
-        ["@lsp.type.typeParameter"] = hl.treesitter["@type"],
-        ["@lsp.type.keyword"] = hl.treesitter["@keyword"],
-        ["@lsp.type.namespace"] = hl.treesitter["@namespace"],
-        ["@lsp.type.parameter"] = hl.treesitter["@parameter"],
-        ["@lsp.type.property"] = hl.treesitter["@property"],
-        ["@lsp.type.variable"] = hl.treesitter["@variable"],
-        ["@lsp.type.macro"] = hl.treesitter["@function.macro"],
-        ["@lsp.type.method"] = hl.treesitter["@method"],
-        ["@lsp.type.number"] = hl.treesitter["@number"],
-        ["@lsp.type.generic"] = hl.treesitter["@text"],
-        ["@lsp.type.builtinType"] = hl.treesitter["@type.builtin"],
-        ["@lsp.typemod.method.defaultLibrary"] = hl.treesitter["@function"],
-        ["@lsp.typemod.function.defaultLibrary"] = hl.treesitter["@function"],
-        ["@lsp.typemod.operator.injected"] = hl.treesitter["@operator"],
-        ["@lsp.typemod.string.injected"] = hl.treesitter["@string"],
-        ["@lsp.typemod.variable.defaultLibrary"] = hl.treesitter["@variable.builtin"],
-        ["@lsp.typemod.variable.injected"] = hl.treesitter["@variable"],
+		--LSP
+		["@lsp.type.comment"] = hl.treesitter["@comment"],
+		["@lsp.type.enum"] = hl.treesitter["@type"],
+		["@lsp.type.enumMember"] = hl.treesitter["@constant.builtin"],
+		["@lsp.type.interface"] = hl.treesitter["@type"],
+		["@lsp.type.typeParameter"] = hl.treesitter["@type"],
+		["@lsp.type.keyword"] = hl.treesitter["@keyword"],
+		["@lsp.type.namespace"] = hl.treesitter["@namespace"],
+		["@lsp.type.parameter"] = hl.treesitter["@parameter"],
+		["@lsp.type.property"] = hl.treesitter["@property"],
+		["@lsp.type.variable"] = hl.treesitter["@variable"],
+		["@lsp.type.macro"] = hl.treesitter["@function.macro"],
+		["@lsp.type.method"] = hl.treesitter["@method"],
+		["@lsp.type.number"] = hl.treesitter["@number"],
+		["@lsp.type.generic"] = hl.treesitter["@text"],
+		["@lsp.type.builtinType"] = hl.treesitter["@type.builtin"],
+		["@lsp.typemod.method.defaultLibrary"] = hl.treesitter["@function"],
+		["@lsp.typemod.function.defaultLibrary"] = hl.treesitter["@function"],
+		["@lsp.typemod.operator.injected"] = hl.treesitter["@operator"],
+		["@lsp.typemod.string.injected"] = hl.treesitter["@string"],
+		["@lsp.typemod.variable.defaultLibrary"] = hl.treesitter["@variable.builtin"],
+		["@lsp.typemod.variable.injected"] = hl.treesitter["@variable"],
 	}
 -- }}}
 
