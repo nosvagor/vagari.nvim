@@ -83,7 +83,7 @@ hl.builtin = {
 	WildMenu = t.active.select,
 
 	-- state change:
-	DiffAdd = t.state.add,
+	DiffAdd = t.state.new,
 	DiffNew = t.state.new,
 	DiffChange = t.state.modified,
 	DiffText = t.state.modified,
@@ -277,7 +277,7 @@ hl.treesitter =
 		["@text.note"] = t.msg.info.norm, -- info notes
 		["@text.warning"] = t.warning, -- warning notes
 		["@text.danger"] = t.msg.error.norm, -- danger/error notes
-		["@text.diff.add"] = t.state.add, -- added text (for diff files)
+		["@text.diff.add"] = t.state.new, -- added text (for diff files)
 		["@text.diff.delete"] = t.state.delete, -- deleted text (for diff files)
 
 		-- Tags
@@ -349,9 +349,9 @@ hl.plugins.lsp = {
 }
 
 hl.plugins.gitsigns = {
-	GitSignsAdd = t.state.add,
-	GitSignsAddLn = t.state.add,
-	GitSignsAddNr = t.state.add,
+	GitSignsAdd = t.state.new,
+	GitSignsAddLn = t.state.new,
+	GitSignsAddNr = t.state.new,
 	GitSignsChange = t.state.modified,
 	GitSignsChangeLn = t.state.modified,
 	GitSignsChangeNr = t.state.modified,
@@ -366,7 +366,7 @@ hl.plugins.nvim_tree = {
 	NvimTreeRootFolder = t.txt.title,
 	NvimTreeGitDirty = t.state.modified,
 	NvimTreeGitNew = t.state.new,
-	NvimTreeGitDeleted = t.state.new,
+	NvimTreeGitDeleted = t.state.delete,
 	NvimTreeSpecialFile = t.special,
 	NvimTreeFolderName = t.var.tag,
 }

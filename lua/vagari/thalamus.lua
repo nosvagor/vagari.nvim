@@ -45,8 +45,7 @@ thalamus = {
 	},
 
 	state = {
-		add = { fg = p.tyr_1 },
-		new = { fg = p.pro_1 },
+		new = { fg = p.try_2 },
 		modified = { fg = p.glu_1 },
 		delete = { fg = p.his_1 },
 	},
